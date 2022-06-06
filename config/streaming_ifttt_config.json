@@ -1,0 +1,26 @@
+{
+  "redis_server": "localhost",
+  "redis_port": 6379,
+  "condition_clauses": [
+    {
+      "condition_variable": "counter_1",
+      "condition_operator":  "gte",
+      "threshold_value": 10000
+    },
+    {
+      "condition_variable": "counter_2",
+      "condition_operator": "gte",
+      "threshold_value": 1000
+    }
+  ],
+  "target_module_file_path": "./plotter.py",
+  "target_module_name": "plotter",
+  "target_function_name": "streaming_data_consumer",
+  "target_function_params": {
+    "dataset_1_path": "../../../data/streaming_data_1",
+    "dataset_2_path": "../../../data/streaming_data_2",
+    "result_file_path": "../../../result/streaming_plot.png"
+  },
+  "num_repeat_recipe": 1,
+  "num_processes": 1
+}
