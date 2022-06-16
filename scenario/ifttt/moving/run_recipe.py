@@ -1,6 +1,6 @@
 import logging
 
-from recipe.ifttt import IFTTT
+from action_model.ifttt import IFTTT
 
 
 logging.basicConfig(
@@ -11,5 +11,7 @@ logging.basicConfig(
 
 
 if __name__ == '__main__':
-    ifttt_recipe = IFTTT.load_recipe_from_json_file('../../../config/moving_ifttt_config.json')
+    ifttt_recipe = IFTTT.load_recipe_from_json_file(
+        '../../../action_plan/moving_ifttt.json'
+    )
     ifttt_recipe.run()

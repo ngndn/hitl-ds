@@ -10,8 +10,12 @@ def plot_data(
     x1, y1 = zip(*dataset_1)
     x2, y2 = zip(*dataset_2)
     fig, ax = plt.subplots(1, 1)
-    ax.scatter(x1, y1)
-    ax.scatter(x2, y2)
+    ax.scatter(x1, y1, label='First Distribution')
+    ax.scatter(x2, y2, label='Second Distribution')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_title('Streaming Data Result')
+    ax.legend()
     fig.savefig(result_file_path)
 
 

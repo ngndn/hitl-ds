@@ -13,7 +13,7 @@
   "target_function_name": "moving_data_consumer",
   "target_function_params": {
     "dataset_path": "../../../data/move_des_data",
-    "result_file_path": "../../../result/moving_data_plot.png"
+    "result_file_path": "../../../result/moving.png"
   },
   "num_repeat_recipe": 1,
   "num_processes": 1

@@ -9,7 +9,11 @@ def plot_data(
     dataset = dataset[:10000]
     x1, y1 = zip(*dataset)
     fig, ax = plt.subplots(1, 1)
-    ax.scatter(x1, y1)
+    ax.scatter(x1, y1, label='Bivariate Normal Distribution')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_title('Moving Data Result')
+    ax.legend()
     fig.savefig(result_file_path)
 
 
