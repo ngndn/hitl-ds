@@ -5,7 +5,8 @@
 This repository contains the implementation of concepts of a simple and
 versatile Human-in-The-Loop system to support modern Data Science workflow.
 The concepts and the details of the scenario implemented in this repo are in
-the paper manuscript "Simple Human-in-The-Loop System for Modern Data Science Workflow."
+the paper manuscript
+["Simple Human-in-The-Loop System for Modern Data Science Workflow."](./manuscript/human_in_the_loop_data_science_process_draft.pdf)
 
 ## 2 Concepts
 The implemented concepts are mainly Interaction Point, Action Model, and Action Plan.
