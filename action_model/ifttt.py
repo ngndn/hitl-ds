@@ -1,3 +1,7 @@
+"""The module implements the action model if-this-then-that.
+
+Each action model object (with concrete values of attributes) is called action plan.
+"""
 import importlib.util
 import json
 import logging
@@ -8,13 +12,15 @@ from multiprocessing import Process
 
 import redis
 
-from typing import List
+from typing import List, Callable
 
 
+# Defines the exception used in the action model if-this-then-that
 class ConditionValueInvalid(Exception):
     pass
 
 
+# Defines the condition supported in the action model if-this-then-that
 CONDITION_MAPPERS = {
     'lt': operator.lt,
     'lte': operator.le,
@@ -25,7 +31,20 @@ CONDITION_MAPPERS = {
 
 
 class IFTTT:
-    """The class to define the if this then that recipe."""
+    """Defines the if-this-then-that action model.
+
+    Attributes:
+        redis_server (str): A redis server address for communication method.
+        redis_port (int): A redis port for communication method.
+        condition_clauses (list of dict): A list of condition clauses in dictionary.
+        target_module_file_path (str): A module file path contain the function to run.
+        target_module_name (str): A name of the to be run module.
+        target_function_name (str): A name of the function to run.
+        target_function_params (dict): An inputs of the target function in dictionary (key-value).
+        num_repeat (int): A number repeat of the action plan.
+        num_processes (int): A number process to run the action plan.
+        target_function (Callable): A target function to run.
+    """
     def __init__(
         self,
         redis_server: str,
@@ -35,7 +54,7 @@ class IFTTT:
         target_module_name: str,
         target_function_name: str,
         target_function_params: dict,
-        num_repeat_recipe: int,
+        num_repeat: int,
         num_processes: int,
     ):
         self.redis_server = redis_server
@@ -45,7 +64,7 @@ class IFTTT:
         self.target_module_name = target_module_name
         self.target_function_name = target_function_name
         self.target_function_params = target_function_params
-        self.num_repeat_recipe = num_repeat_recipe
+        self.num_repeat = num_repeat
         self.num_processes = num_processes
 
         # Load the target function by using the importlib and
@@ -59,10 +78,12 @@ class IFTTT:
         )
 
     def run(self):
+        """Runs the action plan."""
         repeat = 0
         while True:
             execute = True
 
+            # Checking the conditions through the communication methods (here is Redis)
             for condition_clause in self.condition_clauses:
                 condition_variable = condition_clause['condition_variable']
                 condition_operator = condition_clause['condition_operator']
@@ -79,6 +100,7 @@ class IFTTT:
                 if not condition_result:
                     execute = False
 
+            # If the conditions are all met. Run the target function.
             if execute:
                 for i in range(self.num_processes):
                     process_name = f'{self.target_function.__name__}-{i + 1}'
@@ -92,22 +114,25 @@ class IFTTT:
                     self.processes.append(process)
                     process.start()
 
+                # Waiting for all the processes to end
                 for process in self.processes:
                     process.join()
                     logging.info('Main: execution of the process: %s done', process.name)
 
                 repeat += 1
             else:
+                # The conditions are not all met. Waiting.
                 time.sleep(1)
                 now = int(time.time())
                 if now % 10 == 0:
                     logging.info('Conditions are not met. Waiting')
 
-            if repeat >= self.num_repeat_recipe:
+            # Stop if the number of repeat times have reached.
+            if repeat >= self.num_repeat:
                 logging.info('Reached the number of repeat of recipe. Stop.')
                 break
 
-    def load_the_target_function(self):
+    def load_the_target_function(self) -> Callable:
         """Loads the target function from file."""
         spec = importlib.util.spec_from_file_location(
             self.target_module_name,
@@ -126,7 +151,7 @@ class IFTTT:
         return cls(**recipe_in_dict)
 
     @classmethod
-    def load_recipe_from_json_file(cls, json_file: str):
+    def load_action_plan_from_json_file(cls, json_file: str):
         """Loads the recipe from a json file."""
         with open(json_file) as f:
             recipe = json.load(f)

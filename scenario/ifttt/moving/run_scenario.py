@@ -1,3 +1,4 @@
+"""Runs the moving data scenario."""
 import shutil
 import redis
 
@@ -11,9 +12,11 @@ def move_file(
 
 
 if __name__ == '__main__':
+    # Set up Redis
     redis_client = redis.Redis('localhost', 6379)
     src = '../../../data/move_src_data'
     des = '../../../data/move_des_data'
 
+    # Move and notify when moving is completed
     move_file(src, des)
     redis_client.set('moved', 1)

@@ -1,3 +1,4 @@
+"""Sets up the environment to run the moving data scenario."""
 import redis
 
 if __name__ == '__main__':

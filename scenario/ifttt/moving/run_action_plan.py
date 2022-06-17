@@ -1,8 +1,9 @@
+"""Runs the action plan in moving data scenario."""
 import logging
 
 from action_model.ifttt import IFTTT
 
-
+# Configs log
 logging.basicConfig(
     format='%(asctime)s|%(levelname)s|%(filename)s:%(lineno)s:%(funcName)s()|%(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
@@ -11,7 +12,9 @@ logging.basicConfig(
 
 
 if __name__ == '__main__':
-    ifttt_recipe = IFTTT.load_recipe_from_json_file(
+    # Loads the action plan from the action plan file
+    moving_action_plan = IFTTT.load_action_plan_from_json_file(
         '../../../action_plan/moving_ifttt.json'
     )
-    ifttt_recipe.run()
+    # Runs the action plan
+    moving_action_plan.run()
