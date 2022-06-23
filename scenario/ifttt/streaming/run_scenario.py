@@ -3,6 +3,7 @@ import math
 import time
 
 import numpy as np
+from numpy.random import default_rng
 import redis
 
 
@@ -21,7 +22,7 @@ def schwefel_func(x):
 
 if __name__ == '__main__':
     # Set up the numpy random seed
-    np.random.seed(710)
+    rng = default_rng(710)
 
     # Set up Redis
     redis_client = redis.Redis('localhost', 6379)
@@ -67,7 +68,7 @@ if __name__ == '__main__':
     for i in range(20000):
         # Only produce 10k samples of the first distribution
         if i < 1e4:
-            x_1 = np.random.multivariate_normal(
+            x_1 = rng.multivariate_normal(
                 underlying_mean_vector_1, underlying_cov_matrix_1
             )
 
@@ -83,7 +84,7 @@ if __name__ == '__main__':
 
         # Only produce 2k samples of the second distribution
         if i % 10 == 0:
-            x_2 = np.random.multivariate_normal(
+            x_2 = rng.multivariate_normal(
                 underlying_mean_vector_2, underlying_cov_matrix_2
             )
 
