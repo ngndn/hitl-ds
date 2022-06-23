@@ -21,6 +21,6 @@
     "dataset_2_path": "../../../data/streaming_data_2",
     "result_file_path": "../../../result/streaming.png"
   },
-  "num_repeat_recipe": 1,
+  "num_repeat": 1,
   "num_processes": 1
 }

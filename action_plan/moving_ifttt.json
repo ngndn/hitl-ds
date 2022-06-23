@@ -15,6 +15,6 @@
     "dataset_path": "../../../data/move_des_data",
     "result_file_path": "../../../result/moving.png"
   },
-  "num_repeat_recipe": 1,
+  "num_repeat": 1,
   "num_processes": 1
 }

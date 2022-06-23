@@ -146,7 +146,7 @@ class IFTTT:
         return getattr(module, self.target_function_name)
 
     @classmethod
-    def load_recipe_from_dict(cls, recipe_in_dict: dict):
+    def load_action_plan_from_dict(cls, recipe_in_dict: dict):
         """Loads the recipe from a dictionary."""
         return cls(**recipe_in_dict)
 
@@ -155,4 +155,4 @@ class IFTTT:
         """Loads the recipe from a json file."""
         with open(json_file) as f:
             recipe = json.load(f)
-            return cls.load_recipe_from_dict(recipe)
+            return cls.load_action_plan_from_dict(recipe)
