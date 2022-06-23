@@ -1,6 +1,7 @@
 # Simple Human-in-The-Loop System for Modern Data Science Workflow
 ### An-Dan Nguyen (dan.nguyen@aalto.fi)
-### (Aalto University)
+### Supervisor: Hong-Linh Truong (linh.truong@aalto.fi)
+### Aalto University
 ## 1 Introduction
 This repository contains the implementation of concepts of a simple and
 versatile Human-in-The-Loop system to support modern Data Science workflow.
@@ -71,3 +72,6 @@ the folder [result](./result). The plot is a picture of a bivariate normal distr
 which is data that has just been moved. A sample plot is shown below.
 
 ![moving.png](./result/moving.png)
+
+### 4 Presentation video
+The recorded presentation video about the project can be watch on YouTube [here](https://www.youtube.com/watch?v=vKkC49R64Jg). 
