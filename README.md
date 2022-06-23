@@ -44,6 +44,7 @@ to start the scenario.
 After finishing, a plot named [streaming.png](./result/streaming.png) is produced
 under the folder [result](./result). The plot is a picture of two bivariate normal
 distributions with different kernels. A sample plot is shown below.
+
 ![streaming.png](./result/streaming.png)
 
 ### 3.2 Moving Data Scenario
@@ -68,4 +69,5 @@ to start the scenario.
 After finishing, a plot named [moving.png](./result/moving.png) is produced under
 the folder [result](./result). The plot is a picture of a bivariate normal distribution,
 which is data that has just been moved. A sample plot is shown below.
+
 ![moving.png](./result/moving.png)
