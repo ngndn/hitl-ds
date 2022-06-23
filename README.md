@@ -6,7 +6,7 @@
 This repository contains the implementation of concepts of a simple and
 versatile Human-in-The-Loop system to support modern Data Science workflow.
 The concepts and the details of the scenario implemented in this repo are in
-the paper manuscript
+the manuscript
 ["Simple Human-in-The-Loop System for Modern Data Science Workflow."](./manuscript/human_in_the_loop_data_science_process_draft.pdf)
 
 ## 2 Concepts
@@ -18,7 +18,7 @@ can be seen as a specific class, and Action Plan is a concrete object of that cl
 The details are laid out in the manuscript.
 
 In order to illustrate those concepts, an Action Model *if-this-then-that* (IFTTT),
-which is named after the famous service [IFTTT (https://ifttt.com) is implemented
+which is named after the famous service [IFTTT](https://ifttt.com), is implemented
 in this repository. The Action Model *if-this-then-that* is implemented in the
 module [ifttt.py](./action_model/ifttt.py) under the folder [action_model](./action_model).
 
