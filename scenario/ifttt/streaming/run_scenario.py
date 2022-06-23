@@ -22,7 +22,7 @@ def schwefel_func(x):
 
 if __name__ == '__main__':
     # Set up the numpy random seed
-    rng = default_rng(710)
+    rng = default_rng([710, 710])
 
     # Set up Redis
     redis_client = redis.Redis('localhost', 6379)
